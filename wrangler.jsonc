@@ -1,6 +1,6 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "commutai-for-sale",
+  "name": "commuter",
   "main": "src/index.js",
   "compatibility_date": "2026-10-01",
   "assets": {
@@ -13,9 +13,11 @@
   "send_email": [{ "name": "EMAIL" }],
   "vars": {
     "MAIL_FROM": "offers@commutai.com",
+    // Public Turnstile site key (safe to publish; the secret key is a Worker secret).
+    "TURNSTILE_SITE_KEY": "0x4AAAAAAFuyNYeHFz_cIJPO",
     "TURNSTILE_HOSTNAMES": "commutai.com,www.commutai.com"
   },
-  // Keep variables added in the dashboard (e.g. TURNSTILE_SITE_KEY) across deploys.
+  // Keep variables added in the dashboard across deploys.
   "keep_vars": true,
   "routes": [
     { "pattern": "commutai.com", "custom_domain": true },

@@ -36,7 +36,7 @@ The page sends from `offers@commutai.com` (change `MAIL_FROM` in `wrangler.jsonc
 
 ### 3. Deploy the Worker
 
-Connect this repo in Dashboard → **Workers & Pages** → **Create** → **Import a repository** (Workers Builds deploys on every push), or from a terminal:
+This repo is connected to the `commuter` Worker through Workers Builds, so every push to `main` deploys. To set it up elsewhere, connect the repo in Dashboard → **Workers & Pages** → **Create** → **Import a repository** (Workers Builds deploys on every push), or from a terminal:
 
 ```sh
 npm install
@@ -53,7 +53,7 @@ npx wrangler secret put CONTACT_TO          # the inbox that receives offers
 npx wrangler secret put TURNSTILE_SECRET    # Turnstile secret key
 ```
 
-Then in Dashboard → the Worker → **Settings** → **Variables and Secrets**, add a plain-text variable `TURNSTILE_SITE_KEY` with the Turnstile site key. (`keep_vars` in `wrangler.jsonc` keeps it across deploys.)
+The public Turnstile site key is set as `TURNSTILE_SITE_KEY` in `wrangler.jsonc`. Secrets can also be added in Dashboard → the Worker → **Settings** → **Variables and Secrets**.
 
 ### 5. Test
 
