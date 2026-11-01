@@ -2,6 +2,11 @@
 // Serves the static page from /public and handles the offer form.
 // The owner's email address is NEVER in this repo or the page: it lives in the
 // CONTACT_TO secret (set with `npx wrangler secret put CONTACT_TO`).
+//
+// Email is delivered with Cloudflare Email Routing's free send_email binding,
+// which can send to any *verified* destination address of the account.
+
+import { EmailMessage } from 'cloudflare:email';
 
 const SITEVERIFY = 'https://challenges.cloudflare.com/turnstile/v0/siteverify';
 
@@ -13,6 +18,44 @@ const json = (body, status = 200) =>
 
 const esc = (s) =>
   String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+
+// UTF-8 safe base64, wrapped at 76 chars for MIME.
+const b64 = (str) => {
+  const bytes = new TextEncoder().encode(str);
+  let bin = '';
+  for (const b of bytes) bin += String.fromCharCode(b);
+  return btoa(bin).replace(/.{1,76}/g, '$&\r\n').trimEnd();
+};
+// RFC 2047 encoded-word for headers that may contain non-ASCII text.
+const hdr = (str) => `=?UTF-8?B?${btoa(String.fromCharCode(...new TextEncoder().encode(str)))}?=`;
+const addr = (s) => String(s).replace(/[\r\n<>"]/g, '');
+
+export function buildMime({ from, fromName, to, replyTo, replyName, subject, text, html }) {
+  const boundary = 'b' + crypto.randomUUID().replace(/-/g, '');
+  return [
+    `From: ${hdr(fromName)} <${addr(from)}>`,
+    `To: <${addr(to)}>`,
+    `Reply-To: ${hdr(replyName)} <${addr(replyTo)}>`,
+    `Subject: ${hdr(subject)}`,
+    `Message-ID: <${crypto.randomUUID()}@${addr(from).split('@')[1]}>`,
+    `Date: ${new Date().toUTCString()}`,
+    'MIME-Version: 1.0',
+    `Content-Type: multipart/alternative; boundary="${boundary}"`,
+    '',
+    `--${boundary}`,
+    'Content-Type: text/plain; charset=UTF-8',
+    'Content-Transfer-Encoding: base64',
+    '',
+    b64(text),
+    `--${boundary}`,
+    'Content-Type: text/html; charset=UTF-8',
+    'Content-Transfer-Encoding: base64',
+    '',
+    b64(html),
+    `--${boundary}--`,
+    '',
+  ].join('\r\n');
+}
 
 const clean = (v, max) => String(v ?? '').replace(/\r/g, '').trim().slice(0, max);
 
@@ -90,15 +133,13 @@ async function handleContact(request, env) {
     <p style="font-family:sans-serif;white-space:pre-wrap">${esc(message)}</p>
     <p style="font-family:sans-serif;color:#666;font-size:12px">Sent from the commutai.com sale page. Reply to answer the sender.</p>`;
 
+  const from = env.MAIL_FROM || 'offers@commutai.com';
   try {
-    await env.EMAIL.send({
-      to: env.CONTACT_TO,
-      from: { email: env.MAIL_FROM || 'offers@commutai.com', name: 'commutai.com offers' },
-      replyTo: { email, name },
-      subject,
-      text,
-      html,
+    const raw = buildMime({
+      from, fromName: 'commutai.com offers', to: env.CONTACT_TO,
+      replyTo: email, replyName: name, subject, text, html,
     });
+    await env.EMAIL.send(new EmailMessage(from, env.CONTACT_TO, raw));
   } catch (err) {
     console.error('send failed', err?.code, err?.message);
     return json({ error: 'The message could not be sent. Try again in a minute.' }, 502);

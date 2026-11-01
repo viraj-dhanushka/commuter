@@ -8,8 +8,8 @@
     "binding": "ASSETS",
     "run_worker_first": ["/api/*"]
   },
-  // Cloudflare Email Service binding. The recipient is supplied at runtime from
-  // the CONTACT_TO secret, so it never appears in this public repo.
+  // Email Routing send binding (free). Sends only to verified destination
+  // addresses; the recipient comes from the CONTACT_TO secret, never this repo.
   "send_email": [{ "name": "EMAIL" }],
   "vars": {
     "MAIL_FROM": "offers@commutai.com",
