@@ -151,6 +151,12 @@ export default {
   async fetch(request, env) {
     const url = new URL(request.url);
 
+    // One canonical address for search engines: www → apex (permanent).
+    if (url.hostname === 'www.commutai.com') {
+      url.hostname = 'commutai.com';
+      return Response.redirect(url.toString(), 301);
+    }
+
     if (url.pathname === '/api/config' && request.method === 'GET') {
       return json({ siteKey: env.TURNSTILE_SITE_KEY || '' });
     }
