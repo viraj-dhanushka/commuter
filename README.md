@@ -7,7 +7,7 @@ It runs as a single Cloudflare Worker:
 - `public/` — the static sale page (served by Workers static assets)
 - `src/index.js` — handles `/api/config` and `/api/contact`
 - Offers are protected by **Cloudflare Turnstile** (verified server-side, including action and hostname checks) plus a honeypot field
-- Offers are emailed to the owner through the **Cloudflare Email Service** `send_email` binding, with **Reply-To** set to the sender
+- Offers are emailed to the owner through the free **Cloudflare Email Routing** `send_email` binding, with **Reply-To** set to the sender
 
 The owner's email address is never in this repository or in the page. It is stored only as the `CONTACT_TO` secret on the Worker.
 
@@ -24,15 +24,14 @@ Dashboard → **Turnstile** → **Add widget**
 
 Keep the **site key** and **secret key**.
 
-### 2. Enable email sending for the domain
+### 2. Enable Email Routing (free)
 
-Dashboard → **Email** → **Email Sending** → onboard `commutai.com` (adds SPF/DKIM DNS records automatically), or:
+Dashboard → **Email Service** → **Email Routing** → `commutai.com`:
 
-```sh
-npx wrangler email sending enable commutai.com
-```
+- **Settings** → **Add missing records** (MX, SPF and DKIM)
+- **Destination addresses** → add the inbox that should receive offers and click the verification link Cloudflare emails to it
 
-The page sends from `offers@commutai.com` (change `MAIL_FROM` in `wrangler.jsonc` if you like).
+The page sends from `offers@commutai.com` (change `MAIL_FROM` in `wrangler.jsonc` if you like). Everything used here is on Cloudflare's free plan.
 
 ### 3. Deploy the Worker
 
