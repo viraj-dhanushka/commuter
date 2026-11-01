@@ -1,0 +1,14 @@
+{
+  "name": "commutai-for-sale",
+  "private": true,
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Sale landing page for commutai.com on Cloudflare Workers",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy"
+  },
+  "devDependencies": {
+    "wrangler": "^4"
+  }
+}

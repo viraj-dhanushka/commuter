@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>commutai.com is for sale</title>
+<meta name="description" content="commutai.com — where your commute meets intelligence. A short, brandable .com for an AI travel companion, transit planner or mobility product. Make an offer.">
+<meta property="og:title" content="commutai.com is for sale">
+<meta property="og:description" content="Where your commute meets intelligence. A brandable .com for the AI companion that rides with you.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://commutai.com/">
+<meta name="theme-color" content="#18213A">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Overpass:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #EEF1F5;
+    --paper-2: #E3E8EF;
+    --ink: #18213A;
+    --muted: #5D6780;
+    --amber: #E8A33D;
+    --teal: #1F8A84;
+    --line-w: 14px;
+    --max: 1120px;
+    --gutter: clamp(16px, 5vw, 56px);
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Overpass", system-ui, sans-serif;
+    font-size: 18px;
+    line-height: 1.55;
+    text-rendering: optimizeLegibility;
+  }
+  a { color: inherit; }
+  :focus-visible { outline: 3px solid var(--teal); outline-offset: 3px; border-radius: 4px; }
+  .wrap { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); }
+
+  /* ---------- top bar ---------- */
+  .bar {
+    display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    padding-top: 22px; padding-bottom: 22px;
+  }
+  .bar .mark { display: flex; align-items: center; gap: 10px; font-weight: 800; text-decoration: none; letter-spacing: -0.01em; }
+  .bar .mark svg { width: 28px; height: 28px; }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    font: inherit; font-weight: 800; font-size: 16px;
+    padding: 12px 22px 10px; border-radius: 999px; border: 2px solid var(--ink);
+    background: var(--ink); color: var(--paper); text-decoration: none; cursor: pointer;
+    transition: background .15s, color .15s;
+  }
+  .btn:hover { background: transparent; color: var(--ink); }
+  .btn.ghost { background: transparent; color: var(--ink); }
+  .btn.ghost:hover { background: var(--ink); color: var(--paper); }
+
+  /* ---------- hero ---------- */
+  .hero { padding: clamp(32px, 7vw, 88px) 0 clamp(40px, 6vw, 72px); }
+  .status {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-weight: 600; color: var(--muted); font-size: 16px; margin: 0 0 18px;
+  }
+  .status::before {
+    content: ""; width: 10px; height: 10px; border-radius: 50%; background: var(--teal);
+    box-shadow: 0 0 0 4px rgba(31,138,132,.18);
+  }
+  .wordmark {
+    margin: 0;
+    font-weight: 900;
+    font-size: clamp(40px, 11.6vw, 138px);
+    line-height: .9;
+    letter-spacing: -0.045em;
+    white-space: nowrap;
+  }
+  .wordmark .tld { font-weight: 300; letter-spacing: -0.03em; color: var(--muted); }
+
+  .interchange { display: block; width: 100%; height: auto; margin: clamp(18px, 3vw, 30px) 0 clamp(26px, 4vw, 40px); overflow: visible; }
+  .interchange .route { fill: none; stroke-width: var(--line-w); stroke-linecap: round; stroke-linejoin: round; }
+  .interchange .label { font-family: "Overpass", sans-serif; font-weight: 800; font-size: 22px; fill: var(--ink); }
+  .interchange .sub { font-family: "Overpass", sans-serif; font-weight: 400; font-size: 17px; fill: var(--muted); }
+
+  .lede {
+    max-width: 30ch;
+    font-size: clamp(26px, 3.4vw, 40px);
+    line-height: 1.15; font-weight: 600; letter-spacing: -0.015em; margin: 0 0 28px;
+  }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+
+  /* draw-on-load: the one orchestrated motion */
+  @media (prefers-reduced-motion: no-preference) {
+    .interchange .route { stroke-dasharray: var(--len); stroke-dashoffset: var(--len); animation: draw 1.6s cubic-bezier(.6,0,.2,1) forwards; }
+    .interchange .route.ai { animation-delay: .15s; }
+    .interchange .route.joined { animation-delay: 1.15s; animation-duration: .9s; }
+    .interchange .stn, .interchange .label, .interchange .sub { opacity: 0; animation: appear .4s ease forwards; }
+    .interchange .stn.hub, .interchange .hub-text { animation-delay: 1.25s; }
+    .interchange .stn.end, .interchange .end-text { animation-delay: 1.9s; }
+    .interchange .start-text, .interchange .stn.start { animation-delay: .05s; }
+  }
+  @keyframes draw { to { stroke-dashoffset: 0; } }
+  @keyframes appear { to { opacity: 1; } }
+
+  /* ---------- sections ---------- */
+  section { padding: clamp(56px, 8vw, 104px) 0; }
+  .band { background: var(--ink); color: var(--paper); }
+  .band .muted { color: #AEB6CA; }
+  h2 {
+    font-weight: 900; font-size: clamp(34px, 5vw, 58px); line-height: 1; letter-spacing: -0.03em;
+    margin: 0 0 18px; max-width: 18ch;
+  }
+  .intro { max-width: 60ch; margin: 0 0 clamp(32px, 5vw, 56px); color: var(--muted); font-size: 20px; }
+  .band .intro { color: #C3CADA; }
+
+  /* name anatomy */
+  .anatomy { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(20px, 4vw, 48px); }
+  .anatomy h3 { font-size: 24px; font-weight: 800; margin: 0 0 8px; letter-spacing: -0.01em; }
+  .anatomy p { margin: 0; color: #C3CADA; }
+  .anatomy .glyph { display: block; height: 6px; width: 56px; border-radius: 6px; margin-bottom: 18px; }
+
+  /* route of use cases */
+  .route-list { list-style: none; margin: 0; padding: 0; position: relative; max-width: 760px; }
+  .route-list::before {
+    content: ""; position: absolute; left: 13px; top: 14px; bottom: 14px; width: 8px; border-radius: 8px;
+    background: linear-gradient(var(--amber), var(--amber) 50%, var(--teal) 50%, var(--teal));
+  }
+  .route-list li { position: relative; padding: 0 0 34px 64px; }
+  .route-list li:last-child { padding-bottom: 0; }
+  .route-list li::before {
+    content: ""; position: absolute; left: 3px; top: 4px; width: 28px; height: 28px; border-radius: 50%;
+    background: var(--paper); border: 6px solid var(--ink);
+  }
+  .route-list h3 { margin: 0 0 4px; font-size: 24px; font-weight: 800; letter-spacing: -0.01em; }
+  .route-list p { margin: 0; color: var(--muted); max-width: 56ch; }
+
+  /* facts */
+  .facts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 2px solid var(--ink); }
+  .facts div { padding: 22px 20px 0 0; }
+  .facts dt { font-size: clamp(36px, 4.6vw, 54px); font-weight: 900; letter-spacing: -0.03em; line-height: 1; }
+  .facts dd { margin: 8px 0 0; color: var(--muted); }
+  .say { margin: clamp(32px, 5vw, 52px) 0 0; font-size: 20px; max-width: 60ch; }
+  .say strong { font-weight: 800; }
+
+  /* transfer steps (genuinely sequential) */
+  .steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0; counter-reset: s; }
+  .steps li { counter-increment: s; position: relative; padding: 64px 18px 0 0; }
+  .steps li::before {
+    content: counter(s); position: absolute; top: 0; left: 0;
+    width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center;
+    background: var(--paper); color: var(--ink); font-weight: 900; font-size: 20px; padding-top: 3px;
+    z-index: 1;
+  }
+  .steps li::after {
+    content: ""; position: absolute; top: 18px; left: 44px; right: 0; height: 8px; background: var(--amber);
+  }
+  .steps li:last-child::after { display: none; }
+  .steps h3 { margin: 0 0 6px; font-size: 20px; font-weight: 800; }
+  .steps p { margin: 0; color: #C3CADA; font-size: 16px; }
+
+  /* offer form */
+  .offer-grid { display: grid; grid-template-columns: 5fr 7fr; gap: clamp(28px, 6vw, 80px); align-items: start; }
+  form { display: grid; gap: 18px; }
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  label { display: grid; gap: 6px; font-weight: 600; font-size: 16px; }
+  .opt { font-weight: 400; color: var(--muted); }
+  input, textarea, select {
+    font: inherit; font-size: 17px; color: var(--ink);
+    background: #fff; border: 2px solid #C9D0DC; border-radius: 10px; padding: 12px 14px;
+    width: 100%;
+  }
+  input:focus, textarea:focus, select:focus { border-color: var(--ink); outline: none; box-shadow: 0 0 0 4px rgba(24,33,58,.12); }
+  textarea { min-height: 150px; resize: vertical; }
+  .money { position: relative; }
+  .money span { position: absolute; left: 14px; top: 50%; transform: translateY(-46%); color: var(--muted); font-weight: 600; pointer-events: none; }
+  .money input { padding-left: 30px; }
+  .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+  .submit-row { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; }
+  .btn[disabled] { opacity: .55; cursor: progress; }
+  .note { font-size: 15px; color: var(--muted); margin: 0; }
+  .msg { margin: 0; padding: 14px 16px; border-radius: 10px; font-weight: 600; display: none; }
+  .msg.ok { display: block; background: rgba(31,138,132,.12); color: #12524E; }
+  .msg.err { display: block; background: rgba(214,72,48,.12); color: #8A2716; }
+  .cf-turnstile { min-height: 65px; }
+  .aside-list { margin: 24px 0 0; padding: 0; list-style: none; display: grid; gap: 12px; }
+  .aside-list li { padding-left: 26px; position: relative; color: var(--muted); }
+  .aside-list li::before { content: ""; position: absolute; left: 0; top: 9px; width: 12px; height: 12px; border-radius: 50%; border: 3px solid var(--teal); }
+
+  footer { padding: 36px 0 48px; color: var(--muted); font-size: 15px; border-top: 1px solid #CDD3DE; }
+  footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 28px; justify-content: space-between; }
+
+  @media (max-width: 900px) {
+    .anatomy { grid-template-columns: 1fr; }
+    .facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .facts div { padding-bottom: 20px; }
+    .steps { grid-template-columns: 1fr; gap: 26px; }
+    .steps li { padding: 4px 0 0 64px; }
+    .steps li::after { top: 44px; left: 18px; right: auto; width: 8px; height: calc(100% - 18px); }
+    .offer-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 560px) {
+    body { font-size: 17px; }
+    .row { grid-template-columns: 1fr; }
+    .bar .btn { padding: 10px 16px 8px; font-size: 15px; }
+    .interchange .label { font-size: 30px; }
+    .interchange .sub { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="wrap bar">
+  <a class="mark" href="/" aria-label="commutai.com home">
+    <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M3 9 C10 9 12 16 16 16" stroke="#E8A33D" stroke-width="5" fill="none" stroke-linecap="round"/><path d="M3 23 C10 23 12 16 16 16" stroke="#1F8A84" stroke-width="5" fill="none" stroke-linecap="round"/><path d="M16 16 H29" stroke="#18213A" stroke-width="5" stroke-linecap="round"/><circle cx="16" cy="16" r="4.5" fill="#fff" stroke="#18213A" stroke-width="3"/></svg>
+    commutai.com
+  </a>
+  <a class="btn" href="#offer">Make an offer</a>
+</header>
+
+<main>
+  <section class="hero" aria-labelledby="name">
+    <div class="wrap">
+      <p class="status">This domain is for sale</p>
+      <h1 class="wordmark" id="name">commutai<span class="tld">.com</span></h1>
+
+      <svg class="interchange" viewBox="0 0 1000 210" role="img" aria-label="Route map: the commute line and the AI line meet at an interchange named commutai, then continue as one line toward your destination.">
+        <!-- commute line (amber) -->
+        <path class="route commute" style="--len:560" stroke="#E8A33D" d="M20 40 H300 C380 40 400 105 480 105"/>
+        <!-- AI line (teal) -->
+        <path class="route ai" style="--len:560" stroke="#1F8A84" d="M20 170 H300 C380 170 400 105 480 105"/>
+        <!-- joined line (ink) -->
+        <path class="route joined" style="--len:500" stroke="#18213A" d="M480 105 H960"/>
+
+        <circle class="stn start" cx="20" cy="40" r="14" fill="#EEF1F5" stroke="#18213A" stroke-width="6"/>
+        <circle class="stn start" cx="20" cy="170" r="14" fill="#EEF1F5" stroke="#18213A" stroke-width="6"/>
+        <text class="label start-text" x="52" y="24">commute</text>
+        <text class="label start-text" x="52" y="204">AI</text>
+
+        <rect class="stn hub" x="452" y="77" width="56" height="56" rx="28" fill="#fff" stroke="#18213A" stroke-width="7"/>
+        <text class="label hub-text" x="532" y="80">commutai</text>
+        <text class="sub hub-text" x="532" y="148">interchange</text>
+
+        <circle class="stn end" cx="960" cy="105" r="16" fill="#18213A"/>
+        <text class="sub end-text" x="960" y="160" text-anchor="end">your destination</text>
+      </svg>
+
+      <p class="lede">Where your commute meets intelligence. A name for the AI companion that rides with you every day.</p>
+      <div class="hero-actions">
+        <a class="btn" href="#offer">Make an offer</a>
+        <a class="btn ghost" href="#fits">See who it fits</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" aria-labelledby="why">
+    <div class="wrap">
+      <h2 id="why">One word, two meanings, zero explaining.</h2>
+      <p class="intro">Most AI names need a tagline to say what they do. This one carries its pitch inside the spelling.</p>
+      <div class="anatomy">
+        <div>
+          <span class="glyph" style="background:var(--amber)"></span>
+          <h3>commute</h3>
+          <p>The trip billions of people make twice a day. A daily habit is the most valuable place a product can live.</p>
+        </div>
+        <div>
+          <span class="glyph" style="background:var(--teal)"></span>
+          <h3>AI</h3>
+          <p>The two letters that say smart, predictive and personal. No awkward suffix, no invented spelling to remember.</p>
+        </div>
+        <div>
+          <span class="glyph" style="background:var(--paper)"></span>
+          <h3>a name, not a label</h3>
+          <p>Say it out loud and it sounds like someone, not something: <em>commu-tai</em>. A companion your users can greet by name.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="fits" aria-labelledby="fits-h">
+    <div class="wrap">
+      <h2 id="fits-h">Built for the products moving people next.</h2>
+      <p class="intro">Every stop on this line is a business that could open its doors at commutai.com tomorrow.</p>
+      <ol class="route-list">
+        <li><h3>An AI commute companion</h3><p>Chats with you on the way in, briefs you on the day, reroutes before the delay hits. The name practically writes the onboarding.</p></li>
+        <li><h3>Smart transit and journey planning</h3><p>Multi-modal routing that learns your habits across train, bus, bike and walk.</p></li>
+        <li><h3>Driver and in-car voice assistants</h3><p>A hands-free co-pilot with a name short enough to say at a red light.</p></li>
+        <li><h3>Corporate commuting and mobility benefits</h3><p>Shuttles, carpools, hybrid-office scheduling and commute-emissions reporting for HR teams.</p></li>
+        <li><h3>Fleet, ride-share and EV routing</h3><p>Predictive dispatch and charging stops, branded with a name that customers already understand.</p></li>
+        <li><h3>Accessible travel guidance</h3><p>Step-by-step, step-free journeys narrated by an assistant people trust to get them there.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section aria-labelledby="facts-h" style="padding-top:0">
+    <div class="wrap">
+      <h2 id="facts-h">The short version.</h2>
+      <dl class="facts">
+        <div><dt>.com</dt><dd>The extension people type by default</dd></div>
+        <div><dt>8</dt><dd>Letters, no hyphens and no numbers</dd></div>
+        <div><dt>3</dt><dd>Syllables, easy to say and spell</dd></div>
+        <div><dt>2</dt><dd>Roots anyone recognises instantly</dd></div>
+      </dl>
+      <p class="say">Imagine the line in your app store listing: <strong>“Meet Commutai, your daily travel companion.”</strong> It reads like a product that already exists, and with this domain it can.</p>
+    </div>
+  </section>
+
+  <section class="band" aria-labelledby="how">
+    <div class="wrap">
+      <h2 id="how">How the transfer works.</h2>
+      <p class="intro">Safe for both sides, with no money changing hands until the domain is in your account.</p>
+      <ol class="steps">
+        <li><h3>Send an offer</h3><p>Use the form below. You'll get a reply directly from the owner.</p></li>
+        <li><h3>Agree on terms</h3><p>Price, timeline and payment method, all in writing.</p></li>
+        <li><h3>Fund escrow</h3><p>Pay into a trusted escrow service such as Escrow.com.</p></li>
+        <li><h3>Receive the domain</h3><p>Registered at Cloudflare and transferred with an auth code to your registrar.</p></li>
+        <li><h3>Funds released</h3><p>Once you confirm ownership, escrow pays out. Done.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="offer" aria-labelledby="offer-h">
+    <div class="wrap offer-grid">
+      <div>
+        <h2 id="offer-h">Make it yours.</h2>
+        <p class="intro" style="margin-bottom:0">Send an offer, a question, or just feedback. Your message goes straight to the owner and you'll hear back by email.</p>
+        <ul class="aside-list">
+          <li>Serious offers get priority replies</li>
+          <li>Your details are only used to reply to you</li>
+          <li>Protected from bots by Cloudflare Turnstile</li>
+        </ul>
+      </div>
+
+      <form id="offer-form" novalidate>
+        <div class="row">
+          <label>Your name
+            <input name="name" autocomplete="name" required maxlength="100">
+          </label>
+          <label>Email
+            <input name="email" type="email" autocomplete="email" required maxlength="200">
+          </label>
+        </div>
+        <div class="row">
+          <label>Offer <span class="opt">(optional, USD)</span>
+            <span class="money"><span aria-hidden="true">$</span><input name="offer" inputmode="numeric" placeholder="e.g. 5,000" maxlength="20"></span>
+          </label>
+          <label>I'm interested in
+            <select name="topic">
+              <option>Buying the domain</option>
+              <option>Asking a question</option>
+              <option>Sharing feedback</option>
+            </select>
+          </label>
+        </div>
+        <label>Message
+          <textarea name="message" required maxlength="4000" placeholder="Tell the owner what you'd build with commutai.com"></textarea>
+        </label>
+        <label class="hp" aria-hidden="true">Leave this empty <input name="website" tabindex="-1" autocomplete="off"></label>
+        <div id="turnstile" class="cf-turnstile"></div>
+        <div class="submit-row">
+          <button class="btn" type="submit" id="send">Send offer</button>
+          <p class="note">The owner's address stays private.</p>
+        </div>
+        <p class="msg" id="msg" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>commutai.com is available for purchase.</span>
+    <a href="#offer">Make an offer</a>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var form = document.getElementById('offer-form');
+  var msg = document.getElementById('msg');
+  var btn = document.getElementById('send');
+  var widgetId = null;
+
+  function show(kind, text) { msg.className = 'msg ' + kind; msg.textContent = text; }
+
+  // Load Turnstile with the public site key served by the Worker (keeps keys out of the repo).
+  fetch('/api/config').then(function (r) { return r.json(); }).then(function (cfg) {
+    if (!cfg.siteKey) return;
+    window.onTurnstileLoad = function () {
+      widgetId = turnstile.render('#turnstile', { sitekey: cfg.siteKey, action: 'offer', theme: 'light' });
+    };
+    var s = document.createElement('script');
+    s.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&onload=onTurnstileLoad';
+    s.async = true; s.defer = true;
+    document.head.appendChild(s);
+  }).catch(function () {});
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var data = Object.fromEntries(new FormData(form).entries());
+    if (!data.name.trim() || !data.message.trim()) return show('err', 'Add your name and a message, then send again.');
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) return show('err', 'Enter a valid email address so the owner can reply.');
+    if (!data['cf-turnstile-response']) return show('err', 'Complete the verification check above the button, then send again.');
+
+    btn.disabled = true; btn.textContent = 'Sending…'; msg.className = 'msg';
+    fetch('/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) })
+      .then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); })
+      .then(function (res) {
+        if (res.ok) { form.reset(); show('ok', 'Offer sent. The owner will reply to the email you provided.'); }
+        else show('err', res.j.error || 'The message could not be sent. Try again in a minute.');
+      })
+      .catch(function () { show('err', 'Network error. Check your connection and send again.'); })
+      .finally(function () {
+        btn.disabled = false; btn.textContent = 'Send offer';
+        if (window.turnstile && widgetId !== null) turnstile.reset(widgetId);
+      });
+  });
+})();
+</script>
+</body>
+</html>

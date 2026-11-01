@@ -1,0 +1,6 @@
+# Copy to .dev.vars for local testing (never commit .dev.vars).
+# Cloudflare's always-pass Turnstile test keys:
+TURNSTILE_SITE_KEY=1x00000000000000000000AA
+TURNSTILE_SECRET=1x0000000000000000000000000000000AA
+TURNSTILE_HOSTNAMES=
+CONTACT_TO=you@example.com

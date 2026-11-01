@@ -1,0 +1,25 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "commutai-for-sale",
+  "main": "src/index.js",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    "directory": "./public",
+    "binding": "ASSETS",
+    "run_worker_first": ["/api/*"]
+  },
+  // Cloudflare Email Service binding. The recipient is supplied at runtime from
+  // the CONTACT_TO secret, so it never appears in this public repo.
+  "send_email": [{ "name": "EMAIL" }],
+  "vars": {
+    "MAIL_FROM": "offers@commutai.com",
+    "TURNSTILE_HOSTNAMES": "commutai.com,www.commutai.com"
+  },
+  // Keep variables added in the dashboard (e.g. TURNSTILE_SITE_KEY) across deploys.
+  "keep_vars": true,
+  "routes": [
+    { "pattern": "commutai.com", "custom_domain": true },
+    { "pattern": "www.commutai.com", "custom_domain": true }
+  ],
+  "observability": { "enabled": true }
+}
