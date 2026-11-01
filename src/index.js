@@ -151,19 +151,34 @@ export default {
   async fetch(request, env) {
     const url = new URL(request.url);
 
-    // One canonical address for search engines: www → apex (permanent).
-    if (url.hostname === 'www.commutai.com') {
+    // One canonical address for search engines: https://commutai.com (permanent).
+    if (url.hostname === 'www.commutai.com' || (url.protocol === 'http:' && url.hostname === 'commutai.com')) {
       url.hostname = 'commutai.com';
+      url.protocol = 'https:';
       return Response.redirect(url.toString(), 301);
     }
-
-    if (url.pathname === '/api/config' && request.method === 'GET') {
-      return json({ siteKey: env.TURNSTILE_SITE_KEY || '' });
+    // Browsers and crawlers ask for /favicon.ico by default.
+    if (url.pathname === '/favicon.ico') {
+      return Response.redirect(`${url.origin}/favicon.svg`, 301);
     }
-    if (url.pathname === '/api/contact') {
-      if (request.method !== 'POST') return json({ error: 'Use POST.' }, 405);
-      return handleContact(request, env);
+    // Tell search engines the form API is not a page to index.
+    if (url.pathname.startsWith('/api/')) {
+      const res = await route(request, env, url);
+      const out = new Response(res.body, res);
+      out.headers.set('X-Robots-Tag', 'noindex');
+      return out;
     }
     return env.ASSETS.fetch(request);
   },
 };
+
+async function route(request, env, url) {
+  if (url.pathname === '/api/config' && request.method === 'GET') {
+    return json({ siteKey: env.TURNSTILE_SITE_KEY || '' });
+  }
+  if (url.pathname === '/api/contact') {
+    if (request.method !== 'POST') return json({ error: 'Use POST.' }, 405);
+    return handleContact(request, env);
+  }
+  return json({ error: 'Not found.' }, 404);
+}
